@@ -1,0 +1,34 @@
+
+
+<div style="margin: auto; max-width: 1000px; margin-bottom: 50px;">
+  <data-table headerTitle="Employees" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)" [pagination]="false" [indexColumn]="true"
+    [selectColumn]="false" [multiSelect]="false" [rowColors]="rowColors">
+    <!--<data-table id="persons-grid" headerTitle="Employees" [pagination_limit]="true" [items]="items" 
+    [itemCount]="itemCount" (reload)="reloadItems($event)"
+    (rowClick)="rowClick($event)" (rowDoubleClick)="rowDoubleClick($event)" [rowTooltip]="rowTooltip">-->
+    <data-table-column [property]="'name'" [header]="'Name'" [sortable]="true" [resizable]="true" width="150px">
+    </data-table-column>
+    <data-table-column property="phone" header="Phone number" width="150px">
+    </data-table-column>
+    <data-table-column property="'address'" header="City" width="150px">
+      <ng-template #dataTableCell let-item="item">
+        <span>{{item.address.city}}</span>
+      </ng-template>
+    </data-table-column>
+    <data-table-column property="'address'" header="Address 1" width="150px">
+      <ng-template #dataTableCell let-item="item">
+        <span>{{item.address.address_line1}}</span>
+      </ng-template>
+    </data-table-column>
+    <data-table-column property="'address'" header="Address 2" width="150px">
+      <ng-template #dataTableCell let-item="item">
+        <span>{{item.address.address_line2}}</span>
+      </ng-template>
+    </data-table-column>
+    <data-table-column property="'address'" header="Postal code" width="150px">
+      <ng-template #dataTableCell let-item="item">
+        <span>{{item.address.postal_code}}</span>
+      </ng-template>
+    </data-table-column>
+  </data-table>
+</div>
