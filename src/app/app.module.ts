@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { DataTableModule } from 'angular-4-data-table';
 
 import { RestApiService } from './services/rest-api.service';
+import { CheckAlphabetsPipe } from './pipes/check-alphabets.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CheckAlphabetsPipe
   ],
   imports: [
     BrowserModule,

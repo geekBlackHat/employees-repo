@@ -9,6 +9,9 @@
     <data-table-column [property]="'name'" [header]="'Name'" [sortable]="true" [resizable]="true" width="150px">
     </data-table-column>
     <data-table-column property="phone" header="Phone number" width="150px">
+      <ng-template #dataTableCell let-item="item">
+        <span>{{item.phone | checkAlphabets}}</span>
+      </ng-template>
     </data-table-column>
     <data-table-column property="'address'" header="City" width="150px">
       <ng-template #dataTableCell let-item="item">
