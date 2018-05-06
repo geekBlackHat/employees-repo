@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
-
+import { FormsModule } from '@angular/forms';
 import { DataTableModule } from 'angular-4-data-table';
 
 import { RestApiService } from './services/rest-api.service';
@@ -16,7 +16,8 @@ import { CheckAlphabetsPipe } from './pipes/check-alphabets.pipe';
   imports: [
     BrowserModule,
     HttpModule,
-    DataTableModule
+    DataTableModule,
+    FormsModule
   ],
   providers: [RestApiService],
   bootstrap: [AppComponent]

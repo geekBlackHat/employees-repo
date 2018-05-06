@@ -1,11 +1,13 @@
 
 
 <div style="margin: auto; max-width: 1000px; margin-bottom: 50px;">
-  <data-table headerTitle="Employees" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)" [pagination]="false" [indexColumn]="true"
+  <div>
+    <span>Filter by: </span>
+    <input type="text" [(ngModel)]="filterText" (keyup)="filterItems()" class="form-control input-sm" style="display: inline-block; width: 100px">
+  </div>
+  <br/>
+  <data-table headerTitle="Employees" [items]="displayItems" [itemCount]="itemCount" (reload)="reloadItems($event)" [pagination]="false" [indexColumn]="true"
     [selectColumn]="false" [multiSelect]="false" [rowColors]="rowColors">
-    <!--<data-table id="persons-grid" headerTitle="Employees" [pagination_limit]="true" [items]="items" 
-    [itemCount]="itemCount" (reload)="reloadItems($event)"
-    (rowClick)="rowClick($event)" (rowDoubleClick)="rowDoubleClick($event)" [rowTooltip]="rowTooltip">-->
     <data-table-column [property]="'name'" [header]="'Name'" [sortable]="true" [resizable]="true" width="150px">
     </data-table-column>
     <data-table-column property="phone" header="Phone number" width="150px">
