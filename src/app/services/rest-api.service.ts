@@ -8,28 +8,37 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RestApiService {
-  headers: Headers;
 
   constructor(protected http: Http) {
-    this.headers = new Headers();
-    this.headers.append('Content-Type', 'application/json');
-    this.headers.append('Accept', 'application/json');
   }
 
   getAllItems(url: string): Observable<any> {
-    return this.http.get(url, this.headers).map((response: any) => {
-      console.log(response.json());
+    return this.http.get(url).map((response: any) => {
       return response.json();
     }).catch(this.handleError);
   }
 
-  postData(data: any, url: string) {
-    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    let options = new RequestOptions({ headers: headers });
-    return this.http.post(url, data, options)
+  postData(url: string, data: any ) {
+    return this.http.post(url, data)
       .map((response: Response) => {
         return response.json();
       }).catch(this.handleError);
+  }
+
+  getItemById(url:string, id): Observable<any> {
+    return this.http.get(url).map((response: any) => {
+      console.log(response.json());
+      response = response.json();
+      let empArray = response.data;
+      
+      for (let i = 0; i < empArray.length; i++) {
+        let element = empArray[i];
+        if (element.id == id) {
+          return element;
+        }
+      }
+      return {};
+    }).catch(this.handleError);
   }
 
   //This Method is used for error handling from API

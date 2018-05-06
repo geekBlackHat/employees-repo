@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="container">
+    <div style="margin: auto; max-width: 1000px; margin-bottom: 50px; margin-top:50px;">
+      <div>
+        <div class="btn btn-primary" [routerLink]="['/employees/add']"> Add New </div>
+        <br/>
+        <div>Filter by name or city: </div>
+        <input type="text" [(ngModel)]="filterText" (keyup)="filterItems()" class="form-control input-sm" style="display: inline-block; width: 100px">
+      </div>
+      <br/>
+      <data-table headerTitle="Employees" [items]="displayItems" [itemCount]="itemCount" (reload)="reloadItems($event)" [pagination]="false"
+        [indexColumn]="true" [selectColumn]="false" [multiSelect]="false" [rowColors]="rowColors">
+        <data-table-column [property]="'name'" [header]="'Name'" [sortable]="true" [resizable]="true" width="150px">
+        </data-table-column>
+        <data-table-column property="phone" header="Phone number" width="150px">
+          <ng-template #dataTableCell let-item="item">
+            <span>{{item.phone | checkAlphabets}}</span>
+          </ng-template>
+        </data-table-column>
+        <data-table-column property="'address'" header="City" width="150px">
+          <ng-template #dataTableCell let-item="item">
+            <span>{{item.address.city}}</span>
+          </ng-template>
+        </data-table-column>
+        <data-table-column property="'address'" header="Address 1" width="100px">
+          <ng-template #dataTableCell let-item="item">
+            <span>{{item.address.address_line1}}</span>
+          </ng-template>
+        </data-table-column>
+        <data-table-column property="'address'" header="Address 2" width="100px">
+          <ng-template #dataTableCell let-item="item">
+            <span>{{item.address.address_line2}}</span>
+          </ng-template>
+        </data-table-column>
+        <data-table-column property="'address'" header="Postal code" width="100px">
+          <ng-template #dataTableCell let-item="item">
+            <span>{{item.address.postal_code}}</span>
+          </ng-template>
+        </data-table-column>
+        <data-table-column header="Actions" width="70px">
+          <ng-template #dataTableHeader let-item="item">
+            <i>Actions</i>
+          </ng-template>
+          <ng-template #dataTableCell let-item="item">
+            <button (click)="editEmployee(item)" class="btn btn-sm btn-default">Edit</button>
+          </ng-template>
+        </data-table-column>
+      </data-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="container">
+    <div class="col-sm-12">
+      <h1>{{currentFunctionality}} Employee</h1>
+      <form novalidate [formGroup]="employeeForm" (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <label for="email">Name</label>
+          <input type="text" class="form-control" id="email" formControlName="name" >
+          <div class="error" *ngIf="employeeForm.get('name').hasError('minlength') && employeeForm.get('name').touched">
+            Name must be at least of 4 characters
+          </div>
+          <div class="error" *ngIf="employeeForm.get('name').hasError('required') && employeeForm.get('name').touched">
+            Name is required
+          </div>          
+        </div>
+      
+        <div class="form-group">
+          <label for="pwd">Phone:</label>
+          <input type="text" class="form-control" formControlName="phone">
+          <div class="error" *ngIf="employeeForm.get('phone').hasError('required') && employeeForm.get('phone').touched">
+            Phone is required
+          </div>
+          <div class="error" *ngIf="employeeForm.get('phone').hasError('pattern') && employeeForm.get('phone').touched">
+            Only numbers are allowed
+          </div>
+        </div>
+      
+        <div formGroupName="address">        
+          <div class="form-group">
+            <label for="pwd">City:</label>
+            <input type="text" class="form-control" formControlName="city">
+          </div>
+        
+          <div class="form-group">
+            <label for="pwd">Address:</label>
+            <input type="text" class="form-control" formControlName="address_line1"><br/>
+            <input type="text" class="form-control" formControlName="address_line2">
+          </div>
+        
+          <div class="form-group">
+            <label for="pwd">Postal Code:</label>
+            <input type="text" class="form-control" formControlName="postal_code">
+          </div>
+
+          
+        </div>      
+        <button type="submit" class="btn btn-default" [disabled]="employeeForm.invalid">{{currentFunctionality}}</button>
+      </form>
+    </div>
+  </div>
+</div>
